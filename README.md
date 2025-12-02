@@ -1,32 +1,174 @@
 
-📰 News-ai
-This is an AI tool that automatically fetches articles from a list of URLs of newspapers and creates summaries/AI-generated contents using Open LLMs.
+# 📰 **News-AI**
 
-🔖 Intructions
-- Clone/download the repository
-- In the local repository, locate `sites.json` and add the list of your favourite newspaper websites 
-- Genereate API key at [https://console.groq.com/keys](https://console.groq.com/keys) *(this is for accessing the LLM)*
-- In the local repository, create a file named `api.txt` and paste your API key
-- Install Docker Desktop [https://www.docker.com/](https://www.docker.com/) and launch it
-- Build the image with `docker build -t news-ai .`
-- Run the image with `docker run -it --rm -v "[\path\to\folder]\output:/app/output" news-ai` *(modify [\path\to\folder] with the absolute path of the project directory. E.g.: "C:\Users\marco\news-ai")*
-- Done! 🚀 You will find your newly-created newspaper in the `output` directory
+An AI-powered tool that automatically fetches news articles from your favorite newspaper websites, extracts their contents, and generates summaries or AI-enhanced insights using **Open LLMs**.
 
-🤖 Data structure
-- Data structure containing the contents of the articles
+The tool runs completely inside Docker and outputs a beautifully formatted PDF newspaper.
+
+---
+
+## 🔖 **Instructions**
+
+### 1️⃣ Clone the repository
+
+```bash
+git clone https://github.com/your-repo/news-ai.git
+cd news-ai
+```
+
+### 2️⃣ Edit your list of newspaper websites
+
+Open the file:
+
+```
+sites.json
+```
+
+Add or remove websites as needed:
+
+```json
+{
+    "sites": [
+        "https://www.reggionline.com/",
+        "https://www.ansa.it/",
+        "https://www.agi.it/"
+    ]
+}
+```
+
+### 3️⃣ Generate your API Key (for LLM access)
+
+Go to:
+👉 [https://console.groq.com/keys](https://console.groq.com/keys)
+
+Copy your API key.
+
+### 4️⃣ Store your API Key
+
+Inside the project directory, create a file named:
+
+```
+api.txt
+```
+
+Paste your API key into it (one line only).
+
+### 5️⃣ Install Docker Desktop
+
+Download and install from:
+👉 [https://www.docker.com/](https://www.docker.com/)
+
+Make sure Docker Desktop is **running** before continuing.
+
+### 6️⃣ Build the Docker image
+
+From inside the project folder:
+
+```bash
+docker build -t news-ai .
+```
+
+### 7️⃣ Run the application
+
+You must mount a local folder to store the generated PDFs.
+
+**Windows (PowerShell):**
+
+```powershell
+docker run -it --rm `
+  -v "C:\Users\marco\news-ai\output:/app/output" `
+  news-ai
+```
+
+**Linux / macOS:**
+
+```bash
+docker run -it --rm \
+  -v "$(pwd)/output:/app/output" \
+  news-ai
+```
+
+### 8️⃣ Done! 🚀
+
+Your freshly generated newspaper PDF will appear in:
+
+```
+output/
+```
+
+---
+
+## 🤖 **Data Structure**
+
+The extracted articles are stored in this Python dictionary:
 
 ```python
-    articles = {
-        "https://www.website_a.com/": {
-            "title": "...",
-            "author": "...",
-            "date": "...",
-            "text": "...",
-            "url": "https://..."
-        },
-        "https://www.website_b.org/": {
-            ...
-        },
-        ...
+articles = {
+    "https://www.website_a.com/": {
+        "title": "...",
+        "author": "...",
+        "date": "...",
+        "text": "...",
+        "url": "https://..."
+    },
+    "https://www.website_b.org/": {
+        "title": "...",
+        "author": "...",
+        "date": "...",
+        "text": "...",
+        "url": "https://..."
     }
+}
 ```
+
+Each key is the homepage URL of a newspaper.
+Each value contains the extracted top article.
+
+---
+
+## 🛠 **Features**
+
+* Automatic extraction of the **main article** from each newspaper homepage
+* Robust parsing of:
+
+  * title
+  * author
+  * date
+  * full article text
+  * canonical URL
+* Optional AI-generated summaries and insights
+* Professional PDF output:
+
+  * 🧾 Single-column layout
+  * 📰 Double-column newspaper layout
+* Fully Dockerized — **zero setup** on your machine
+
+---
+
+## 📄 **Output**
+
+Your generated PDF is stored in:
+
+```
+output/newspaper.pdf
+```
+
+Layouts available:
+
+* **Single column** (clean and elegant)
+* **Two columns** (Corriere-style newspaper layout)
+
+---
+
+## 🤝 **Contributing**
+
+PRs, ideas, and suggestions are welcome.
+This project is modular and designed for easy extension (AI modules, new layouts, NLP features).
+
+---
+
+## 📜 **License**
+
+MIT License — free for personal and commercial use.
+
+---
