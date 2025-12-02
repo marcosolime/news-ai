@@ -1,0 +1,11 @@
+feedparser
+requests
+beautifulsoup4
+PySimpleGUI
+groq
+reportlab
+newspaper3k
+lxml
+lxml_html_clean
+reportlab
+trafilatura
