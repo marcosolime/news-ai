@@ -12,7 +12,7 @@ The tool runs completely inside Docker and outputs a beautifully formatted PDF n
 ### 1️⃣ Clone the repository
 
 ```bash
-git clone https://github.com/your-repo/news-ai.git
+git clone https://github.com/marcosolime/news-ai.git
 cd news-ai
 ```
 
@@ -29,7 +29,7 @@ Add or remove websites as needed:
 ```json
 {
     "sites": [
-        "https://www.reggionline.com/",
+        "https://www.ilpost.it/",
         "https://www.ansa.it/",
         "https://www.agi.it/"
     ]
