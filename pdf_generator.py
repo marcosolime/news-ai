@@ -94,7 +94,7 @@ def get_styles():
 def create_news_pdf(articles: dict, filename="news_ai.pdf"):
     """
     Produces a newspaper-style PDF:
-    - Title header: 'News-AI 📰🚀'
+    - Title header: 'News-AI'
     - News pills (bullet list)
     - Two-column layout for articles
     """
