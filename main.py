@@ -1,7 +1,7 @@
 import json
 from extractor import extract_top_article_url, extract_article
 from pills_generator import generate_pills_for_all_articles
-from pdf_generator import create_pdf_one_column, create_pdf_two_columns
+from pdf_generator import create_news_pdf
 
 def load_sites(path="sites.json"):
     """Load the list of sites from json."""
@@ -58,13 +58,13 @@ def main():
     # enrich with new-pills
     articles = generate_pills_for_all_articles(articles)
 
-    """
+    
     print("Generating PDF...")
-    create_pdf_two_columns(articles)
+    create_news_pdf(articles, "output/newspaper.pdf")
     print("DONE!")
-    """
+    
 
-    debug_print_articles(articles)
+    #debug_print_articles(articles)
     
 if __name__ == "__main__":
     main()
