@@ -1,5 +1,6 @@
 import json
-from extractor_ai import extract_top_article_url, extract_article
+from extractor import extract_top_article_url, extract_article
+from pills_generator import generate_pills_for_all_articles
 from pdf_generator import create_pdf_one_column, create_pdf_two_columns
 
 def load_sites(path="sites.json"):
@@ -13,10 +14,11 @@ def debug_print_articles(articles: dict, limit=400):
 
     for i, (site, art) in enumerate(articles.items(), start=1):
         print(f"--- 📰 ARTICLE {i} ({site}) ---")
-        print(f"🔖 Title  : {art['title']}")
-        print(f"🧑 Author : {art['author']}")
-        print(f"📅 Date   : {art['date']}")
-        print(f"🔗 URL    : {art['url']}")
+        print(f"🔖 Title    : {art['title']}")
+        print(f"🧑 Author   : {art['author']}")
+        print(f"📅 Date     : {art['date']}")
+        print(f"🔗 URL      : {art['url']}")
+        print(f"💊 Pill (AI): {art['pill']}")
         print("")
         print(f"Text (limit {limit} chars):")
         print(art['text'][:limit] + "...")
@@ -53,12 +55,16 @@ def main():
         # store in dictionary
         articles[site] = data
     
-    debug_print_articles(articles)
+    # enrich with new-pills
+    articles = generate_pills_for_all_articles(articles)
 
-
+    """
     print("Generating PDF...")
     create_pdf_two_columns(articles)
     print("DONE!")
+    """
 
+    debug_print_articles(articles)
+    
 if __name__ == "__main__":
     main()
