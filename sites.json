@@ -1,9 +1,14 @@
 {
     "sites": [
         "https://www.corriere.it/",
-        "https://www.ansa.it/",
         "https://www.agi.it/",
+        "https://www.reuters.com/",
         "https://www.ilpost.it/",
-        "https://www.reggionline.com/"
+        "https://www.ansa.it/sito/notizie/politica/politica.shtml",
+        "https://www.ansa.it/sito/notizie/economia/economia.shtml",
+        "https://www.reggionline.com/",
+        "https://www.redacon.it/",
+        "https://www.rivistastudio.com/",
+        "https://www.artribune.com/"
     ]
 }
