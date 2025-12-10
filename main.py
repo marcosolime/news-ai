@@ -44,7 +44,7 @@ def main():
 
         # step 1: find top article
         #url_article = extract_top_article_url(site, verbose=False)
-        url_article = extract_best_article_url(site, k=10, client=client, verbose=True)
+        url_article = extract_best_article_url(site, k=20, client=client, verbose=True)
         if not url_article:
             print(f"Unable to find top article from {site}")
             continue
@@ -67,7 +67,7 @@ def main():
 
     print("Generating PDF...")
     #create_news_pdf(articles, "output/newspaper.pdf")
-    generate_newspaper_pdf(articles, "output/newspaper.pdf")
+    generate_newspaper_pdf(articles, "output/newspaper.pdf", font="Volkhov")
     print("DONE!")
     
     debug_print_articles(articles)

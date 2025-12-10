@@ -1,11 +1,21 @@
 import os
 from weasyprint import HTML, CSS
 
-def generate_newspaper_pdf(articles: dict, output_path: str):
+def generate_newspaper_pdf(articles: dict, output_path: str, font="Ubuntu"):
     """
     Generate a newspaper-style PDF with 3 columns per page,
-    Ubuntu fonts, minimal margins, pill news, and dense layout.
+    switchable fonts (Ubuntu, Volkhov, etc.).
     """
+
+    # --- Build font paths ---
+    font_regular = f"fonts/{font}-Regular.ttf"
+    font_bold = f"fonts/{font}-Bold.ttf"
+
+    if not os.path.exists(font_regular):
+        raise FileNotFoundError(f"Missing font: {font_regular}")
+
+    if not os.path.exists(font_bold):
+        raise FileNotFoundError(f"Missing font: {font_bold}")
 
     # --- Load content ---
     pills_html = "<ul>"
@@ -37,21 +47,24 @@ def generate_newspaper_pdf(articles: dict, output_path: str):
 
 <style>
 
+    /* DYNAMIC FONT LOADING */
     @font-face {{
-        font-family: 'Ubuntu';
-        src: url('fonts/Ubuntu-Regular.ttf');
+        font-family: '{font}';
+        src: url('{font_regular}');
     }}
+
     @font-face {{
-        font-family: 'Ubuntu Bold';
-        src: url('fonts/Ubuntu-Bold.ttf');
+        font-family: '{font} Bold';
+        src: url('{font_bold}');
     }}
+
+    /* Page margins */
     @page {{
         margin: 0.3cm;
     }}
 
-    
     body {{
-        font-family: 'Ubuntu';
+        font-family: '{font}';
         margin: 0;
         padding: 0;
         font-size: 11px;
@@ -59,7 +72,7 @@ def generate_newspaper_pdf(articles: dict, output_path: str):
         color: #111;
     }}
 
-    /* 3 columns newspaper layout */
+    /* 3-column layout */
     .content {{
         column-count: 3;
         column-gap: 18px;
@@ -67,16 +80,14 @@ def generate_newspaper_pdf(articles: dict, output_path: str):
         orphans: 2;
     }}
 
-    /* Title only on first page */
     #front-title {{
         text-align: center;
-        font-family: 'Ubuntu Bold';
+        font-family: '{font} Bold';
         font-size: 40px;
         margin-bottom: 10px;
         margin-top: 0;
     }}
 
-    /* Pill news block */
     #pill-news {{
         background: #ededed;
         padding: 10px;
@@ -85,7 +96,7 @@ def generate_newspaper_pdf(articles: dict, output_path: str):
     }}
 
     #pill-news h3 {{
-        font-family: 'Ubuntu Bold';
+        font-family: '{font} Bold';
         margin-top: 0;
     }}
 
@@ -96,7 +107,7 @@ def generate_newspaper_pdf(articles: dict, output_path: str):
     }}
 
     h2 {{
-        font-family: 'Ubuntu Bold';
+        font-family: '{font} Bold';
         font-size: 17px;
         margin-bottom: 4px;
         line-height: 1.1;
@@ -130,7 +141,6 @@ def generate_newspaper_pdf(articles: dict, output_path: str):
 </html>
 """
     
-    # --- Save PDF ---
+    # Save PDF
     HTML(string=html_content, base_url=".").write_pdf(output_path)
-
-    print(f"PDF generated: {output_path}")
+    print(f"PDF generated with font {font}: {output_path}")
