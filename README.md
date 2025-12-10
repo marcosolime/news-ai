@@ -96,69 +96,6 @@ Your freshly generated newspaper PDF will appear in:
 output/
 ```
 
----
-
-## 🤖 **Data Structure**
-
-The extracted articles are stored in this Python dictionary:
-
-```python
-articles = {
-    "https://www.website_a.com/": {
-        "title": "...",
-        "author": "...",
-        "date": "...",
-        "text": "...",
-        "url": "https://..."
-    },
-    "https://www.website_b.org/": {
-        "title": "...",
-        "author": "...",
-        "date": "...",
-        "text": "...",
-        "url": "https://..."
-    }
-}
-```
-
-Each key is the homepage URL of a newspaper.
-Each value contains the extracted top article.
-
----
-
-## 🛠 **Features**
-
-* Automatic extraction of the **main article** from each newspaper homepage
-* Robust parsing of:
-
-  * title
-  * author
-  * date
-  * full article text
-  * canonical URL
-* Optional AI-generated summaries and insights
-* Professional PDF output:
-
-  * 🧾 Single-column layout
-  * 📰 Double-column newspaper layout
-* Fully Dockerized — **zero setup** on your machine
-
----
-
-## 📄 **Output**
-
-Your generated PDF is stored in:
-
-```
-output/newspaper.pdf
-```
-
-Layouts available:
-
-* **Single column** (clean and elegant)
-* **Two columns** (Corriere-style newspaper layout)
-
----
 
 ## 🤝 **Contributing**
 
