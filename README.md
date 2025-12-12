@@ -72,11 +72,12 @@ docker build -t news-ai .
 
 You must mount a local folder to store the generated PDFs.
 
-**Windows (PowerShell):**
+**Windows (Bash):**
 
-```powershell
+Example:
+```bash
 docker run -it --rm `
-  -v "C:\Users\marco\news-ai\output:/app/output" `
+  -v "C:\Users\<username>\Desktop\news-ai\output:/app/output" `
   news-ai
 ```
 
@@ -95,7 +96,6 @@ Your freshly generated newspaper PDF will appear in:
 ```
 output/
 ```
-
 
 ## 🤝 **Contributing**
 

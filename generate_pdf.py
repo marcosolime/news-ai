@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 from weasyprint import HTML, CSS
 
 def generate_newspaper_pdf(articles: dict, output_path: str, font="Ubuntu"):
@@ -6,6 +7,8 @@ def generate_newspaper_pdf(articles: dict, output_path: str, font="Ubuntu"):
     Generate a newspaper-style PDF with 3 columns per page,
     switchable fonts (Ubuntu, Volkhov, etc.).
     """
+
+    generation_date = datetime.now().strftime("%B %d, %Y")  # "January 12, 2025"
 
     # --- Build font paths ---
     font_regular = f"fonts/{font}-Regular.ttf"
@@ -88,6 +91,16 @@ def generate_newspaper_pdf(articles: dict, output_path: str, font="Ubuntu"):
         margin-top: 0;
     }}
 
+    #gen-date {{
+        text-align: center;
+        font-size: 12px;
+        margin-top: -10px;
+        margin-bottom: 15px;
+        color: #444;
+        font-family: '{font}';
+    }}
+
+
     #pill-news {{
         background: #ededed;
         padding: 10px;
@@ -127,7 +140,8 @@ def generate_newspaper_pdf(articles: dict, output_path: str, font="Ubuntu"):
     <div class="content">
     
         <h1 id="front-title">News AI</h1>
-
+        <div id="gen-date">Generated on: {generation_date}</div>
+        
         <section id="pill-news">
             <h3>News Pills</h3>
             {pills_html}
